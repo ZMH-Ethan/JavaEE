@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>猜数字游戏</h2>
+        玩家输入一个 1-10的数字:<input id="input_num" type="text"><br/>
+        <input type="button" value="查看结果" onclick="selectResultJq()">
+        <div id="result_div"></div>
+    </div>
+
+
+    <script>
+        //jQuery猜数字游戏：
+        function selectResultJq() {
+            var randomNum = 1+Math.floor(Math.random()*10);
+            // var userInputNum = document.getElementById("input_num").value;
+            var userInputNum = jQuery("#input_num"),value;
+            var msg;
+            if(randomNum==userInputNum){
+                msg="<h4>恭喜：猜对了</h4>";
+            }else{
+                msg="<h4>抱歉：猜错了，正确的数字是："+randomNum+"</h4>";
+            }
+            // document.getElementById("result_div").innerHTML = msg;
+            jQuery("#result_div").html(msg);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.container-right h3 {
+    font-size: 22px;
+    text-align: center;
+    font-weight: 900;
+    padding: 10px 0px;
+}
+.container-right .date {
+    text-align: center;
+    color: green;
+    padding: 10px 0;
+    
+}
+.container-right .content {
+    text-indent: 2em;
+    margin-bottom: 5px;
+}
