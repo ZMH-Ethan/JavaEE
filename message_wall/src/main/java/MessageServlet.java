@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Message {
-    // 这几个属性必须设置 public !!!!
-    // 如果设置 private, 必须生成 public 的 getter 和 setter !!!
     public String from;
     public String to;
     public String message;
@@ -35,7 +33,7 @@ class Message {
 @WebServlet("/message")
 public class MessageServlet extends HttpServlet {
     private ObjectMapper objectMapper = new ObjectMapper();
-    // private List<Message> messageList = new ArrayList<>();
+//    private List<Message> messageList = new ArrayList<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,6 +50,7 @@ public class MessageServlet extends HttpServlet {
         // 通过这个方法来处理 "提交新消息"
         Message message = objectMapper.readValue(req.getInputStream(), Message.class);
         save(message);
+//        messageList.add(message);
         System.out.println("消息提交成功! message=" + message);
 
         // 响应只是返回 200 报文. body 为空. 此时不需要额外处理. 默认就是返回 200 的.
@@ -60,9 +59,9 @@ public class MessageServlet extends HttpServlet {
     // 这个方法用来往数据库中存一条记录
     private void save(Message message) {
         DataSource dataSource = new MysqlDataSource();
-        ((MysqlDataSource)dataSource).setUrl("jdbc:mysql://127.0.0.1:3306/java107?characterEncoding=utf8&useSSL=false");
+        ((MysqlDataSource) dataSource).setUrl("jdbc:mysql://127.0.0.1:3306/test_1?characterEncoding=utf8&useSSL=false");
         ((MysqlDataSource)dataSource).setUser("root");
-        ((MysqlDataSource)dataSource).setPassword("2222");
+        ((MysqlDataSource)dataSource).setPassword("20030603");
 
         try {
             Connection connection = dataSource.getConnection();
@@ -85,9 +84,9 @@ public class MessageServlet extends HttpServlet {
         List<Message> messageList = new ArrayList<>();
 
         DataSource dataSource = new MysqlDataSource();
-        ((MysqlDataSource)dataSource).setUrl("jdbc:mysql://127.0.0.1:3306/java107?characterEncoding=utf8&useSSL=false");
+        ((MysqlDataSource) dataSource).setUrl("jdbc:mysql://127.0.0.1:3306/test_1?characterEncoding=utf8&useSSL=false");
         ((MysqlDataSource)dataSource).setUser("root");
-        ((MysqlDataSource)dataSource).setPassword("2222");
+        ((MysqlDataSource)dataSource).setPassword("20030603");
 
         try {
             Connection connection = dataSource.getConnection();
