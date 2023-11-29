@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserMapper">
+    <resultMap id="BaseMap" type="com.example.demo.model.Userinfo">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="createtime" property="createTime"></result>
+        <result column="updatetime" property="updateTime"></result>
+    </resultMap>
+
+    <select id="getAll" resultType="com.example.demo.model.Userinfo">
+        select * from userinfo
+    </select>
+
+    <select id="getUserById" resultType="com.example.demo.model.Userinfo">
+        select id,username as name,password from userinfo where id=#{id}
+    </select>
+
+    <select id="login" resultType="com.example.demo.model.Userinfo">
+        select * from userinfo where username=#{u} and password=#{p}
+    </select>
+
+    <select id="getAllByOrder" resultType="com.example.demo.model.Userinfo">
+        select * from userinfo order by id ${myOrder}
+    </select>
+
+    <delete id="delByID">
+        delete from userinfo where id=#{id}
+    </delete>
+
+    <update id="update">
+        update userinfo set username=#{username} where id=#{id}
+    </update>
+    
+    <insert id="add">
+        insert into userinfo(username,password, photo) values (#{username},#{password},#{photo})
+    </insert>
+
+    <insert id="add2" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into userinfo(username,password, photo) values (#{username},#{password},#{photo})
+    </insert>
+
+    <select id="getLikeList" resultType="com.example.demo.model.Userinfo">
+        select * from userinfo where username like concat('%',#{username},'%')
+    </select>
+
+</mapper>
